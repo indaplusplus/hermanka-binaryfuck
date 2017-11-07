@@ -2,3 +2,7 @@
 *.bf
 **/*.un~
 **/*.bf
+**/CMake*
+**/MakeFile
+**/.idea
+!Interpreter/CMakeLists.txt

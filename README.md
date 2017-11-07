@@ -16,7 +16,7 @@ Interpreter ~~and compiler~~ for binaryfuck.
 Binaryfuck programs starts with an 1
 
 ### Brainfuck to Binaryfuck Coverter
-python3 BFconverter.py brainfuck\_path output\_path
+python3 BFconverter.py brainfuck\_path binaryfuck\_path
 
 ### Interpreter
 

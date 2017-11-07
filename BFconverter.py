@@ -2,7 +2,7 @@ import sys
 import os
 
 if len(sys.argv) != 3:
-    print("Usage: python3", sys.argv[0], "brainfuck_path", "output_path")
+    print("Usage: python3", sys.argv[0], "brainfuck_path", "binaryfuck_path")
     sys.exit(0)
 
 brainf = sys.argv[1]
