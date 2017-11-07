@@ -23,7 +23,7 @@ After compiling, run:
  
 	./binaryfuck source.bf [-m memory_size]
 	
-Default memory size is 256 slots.
+Default memory size is 256 ''slots''.
 
 ### Compiler
 
@@ -40,3 +40,6 @@ On a better computer:
 Optimized:
 
 	33.39 real        32.09 user         0.14 sys	
+Optimized on better computer:
+
+	11.27 user   0.00 system   0:11.27 elapsed
