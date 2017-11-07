@@ -3,4 +3,6 @@
 **/CMake*
 **/MakeFile
 **/.idea
+binaryfuck
+brainfuck
 !Interpreter/CMakeLists.txt
