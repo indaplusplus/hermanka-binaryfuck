@@ -99,7 +99,7 @@ public:
       }
 
       if (data_pointer < 0 || data_pointer >= MEM_SIZE) {
-        throw syntax_error("Out of bounds");
+        throw runtime_error("Out of bounds");
       }
 
       ++instruction_pointer;

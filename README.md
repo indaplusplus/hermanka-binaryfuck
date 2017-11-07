@@ -19,6 +19,7 @@ Binaryfuck programs starts with an 1
 python3 BFconverter.py brainfuck\_path binaryfuck\_path
 
 ### Interpreter
+After compiling, run ./binaryfuck source.bf
 
 ### Compiler
 
