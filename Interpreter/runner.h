@@ -8,6 +8,7 @@
 #include <vector>
 #include <iostream>
 #include <exception>
+#include <stack>
 
 #include "parser.h"
 
@@ -16,38 +17,44 @@ private:
 
   std::vector<Instruction> instructions;
   std::vector<int> memory;
+  std::vector<int> loop_match;
   const int MEM_SIZE;
 
-  void init() {
+  void match_loops() {
+    std::stack<int> unmatched;
+    for (int i = 0; i < instructions.size(); ++i) {
+      Instruction inst = instructions[i];
+      if (inst == START_LOOP) {
+        unmatched.push(i);
+      }
+      if (inst == END_LOOP) {
+        if (unmatched.empty()) throw runtime_error("unmatched ]");
+        int idx = unmatched.top();
+        unmatched.pop();
+        loop_match[i] = idx;
+        loop_match[idx] = i;
+      }
+    }
+    if (!unmatched.empty()) throw runtime_error("unmatched [");
+  }
 
+  void init() {
+    match_loops();
   }
 
   int get_matching_end(int idx) {
-    int cnt = 1;
-    while (cnt) {
-      Instruction inst = instructions[++idx];
-      if (inst == END) throw runtime_error("unmatched [");
-      if (inst == START_LOOP) ++cnt;
-      if (inst == END_LOOP) --cnt;
-    }
-    return idx;
+    return loop_match[idx];
   }
 
   int get_matching_start(int idx) {
-    int cnt = 1;
-    while (cnt) {
-      Instruction inst = instructions[--idx];
-      if (inst == START) throw runtime_error("unmatched ]");
-      if (inst == START_LOOP) --cnt;
-      if (inst == END_LOOP) ++cnt;
-    }
-    return idx;
+    return loop_match[idx];
   }
 
 public:
 
   explicit Runner(std::vector<Instruction> program, int memsize = 256):
-      instructions(std::move(program)), MEM_SIZE(memsize), memory(memsize, 0) {
+      instructions(std::move(program)), MEM_SIZE(memsize), memory(memsize, 0),
+      loop_match(instructions.size(), -1) {
     init();
   }
 

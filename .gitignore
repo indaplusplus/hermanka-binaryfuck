@@ -1,7 +1,5 @@
 *.un~
-*.bf
 **/*.un~
-**/*.bf
 **/CMake*
 **/MakeFile
 **/.idea

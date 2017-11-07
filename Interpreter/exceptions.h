@@ -11,19 +11,19 @@
 class syntax_error : std::exception {
 public:
   std::string error_message;
-  syntax_error(std::string message = "") : error_message(message) {}
+  syntax_error(std::string message = "") : error_message(std::move(message)) {}
 };
 
 class runtime_error : std::exception {
 public:
   std::string error_message;
-  runtime_error(std::string message = "") : error_message(message) {}
+  runtime_error(std::string message = "") : error_message(std::move(message)) {}
 };
 
 class argument_error : std::exception {
 public:
   std::string error_message;
-  argument_error(std::string message = "") : error_message(message) {}
+  argument_error(std::string message = "") : error_message(std::move(message)) {}
 };
 
 #endif //INTERPRETER_EXCEPTIONS_H
