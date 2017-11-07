@@ -1,4 +1,4 @@
-#Binaryfuck
+# Binaryfuck
 
 Interpreter ~~and compiler~~ for binaryfuck.
 
@@ -15,11 +15,11 @@ Interpreter ~~and compiler~~ for binaryfuck.
 
 Binaryfuck programs starts with an 1
 
-###Brainfuck to Binaryfuck Coverter
+### Brainfuck to Binaryfuck Coverter
 python3 BFconverter.py brainfuck\_path output\_path
 
-###Interpreter
+### Interpreter
 
-###Compiler
+### Compiler
 
-##Perfomance
+## Perfomance
