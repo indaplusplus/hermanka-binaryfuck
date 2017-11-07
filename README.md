@@ -13,7 +13,7 @@ Interpreter ~~and compiler~~ for binaryfuck.
 | 110        | [         | Jump past matching ] if pointer value is 0
 | 111        | ]         | Jump to matching [ if pointer value is not 0
 
-Binaryfuck programs starts with an 1
+Binaryfuck programs starts with an 1.
 
 ### Brainfuck to Binaryfuck Coverter
 	python3 BFconverter.py brainfuck_path binaryfuck_path
@@ -22,11 +22,21 @@ Binaryfuck programs starts with an 1
 After compiling, run:
  
 	./binaryfuck source.bf [-m memory_size]
+	
+Default memory size is 256 slots.
 
 ### Compiler
 
 ## Perfomance
 
+### Interpreter
 mandelbrot.bf: 
 	
-	       82.03 real        80.31 user         0.30 sys
+	81.09 real        79.66 user         0.26 sys
+	     
+On a better computer:
+
+	35.81 user   0.00 system   0:35.82 elapsed  	
+Optimized:
+
+	33.39 real        32.09 user         0.14 sys	

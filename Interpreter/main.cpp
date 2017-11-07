@@ -69,12 +69,14 @@ int main(int argc, char** argv) {
     exit(1);
   }
 
+  auto compressed_program = parser.compress(program);
+
 #ifdef DEBUG
   for (auto & i : program) std::cerr << char(i);
   std::cerr << std::endl;
 #endif
 
-  Runner runner(program, mem_size);
+  Runner runner(compressed_program, mem_size);
   try {
     runner.run();
   } catch (runtime_error e) {

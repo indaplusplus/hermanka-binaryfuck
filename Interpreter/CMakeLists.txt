@@ -6,4 +6,4 @@ set(CMAKE_CXX_STANDARD 17)
 set(SOURCE_FILES main.cpp parser.h runner.h exceptions.h)
 
 set(CPPFLAGS -O3)
-add_executable(binaryfuck ${SOURCE_FILES} ${FLAGS})
+add_executable(binaryfuck ${SOURCE_FILES})

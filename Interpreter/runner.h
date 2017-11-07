@@ -15,7 +15,7 @@
 class Runner {
 private:
 
-  std::vector<Instruction> instructions;
+  std::vector<std::pair<Instruction, int> > instructions;
   std::vector<int> memory;
   std::vector<int> loop_match;
   const int MEM_SIZE;
@@ -23,7 +23,7 @@ private:
   void match_loops() {
     std::stack<int> unmatched;
     for (int i = 0; i < instructions.size(); ++i) {
-      Instruction inst = instructions[i];
+      Instruction inst = instructions[i].first;
       if (inst == START_LOOP) {
         unmatched.push(i);
       }
@@ -52,8 +52,8 @@ private:
 
 public:
 
-  explicit Runner(std::vector<Instruction> program, int memsize = 256):
-      instructions(std::move(program)), MEM_SIZE(memsize), memory(memsize, 0),
+  explicit Runner(std::vector<std::pair<Instruction,int> > program, int mem_size = 256):
+      instructions(std::move(program)), MEM_SIZE(mem_size), memory(mem_size, 0),
       loop_match(instructions.size(), -1) {
     init();
   }
@@ -66,21 +66,22 @@ public:
     int data_pointer = 0;
     int instruction_pointer = 0;
     while (true) {
-      switch (instructions[instruction_pointer]) {
+      int cnt = instructions[instruction_pointer].second;
+      switch (instructions[instruction_pointer].first) {
         case INCREMENT:
-          ++memory[data_pointer];
+          memory[data_pointer] += cnt;
           break;
 
         case DECREMENT:
-          --memory[data_pointer];
+          memory[data_pointer] -= cnt;
           break;
 
         case MOVE_RIGHT:
-          ++data_pointer;
+          data_pointer += cnt;
           break;
 
         case MOVE_LEFT:
-          --data_pointer;
+          data_pointer -= cnt;
           break;
 
         case OUTPUT:
@@ -112,8 +113,6 @@ public:
       ++instruction_pointer;
     }
   }
-
 };
-
 
 #endif //INTERPRETER_PROGRAM_H

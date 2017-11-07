@@ -9,6 +9,7 @@
 #include <string>
 #include <exception>
 #include <sstream>
+#include <utility>
 
 #include "exceptions.h"
 
@@ -61,6 +62,23 @@ public:
   std::vector<Instruction> parse_32(std::string source) {
     return {END};
   }
+
+  std::vector<std::pair<Instruction, int> > compress(std::vector<Instruction> instructions) {
+    Instruction current_instruction = START;
+    int cnt = 0;
+    std::vector<std::pair<Instruction, int> > return_list;
+    for (Instruction &i : instructions) {
+      if (i != current_instruction || i == START_LOOP || i == END_LOOP || i == INPUT || i == OUTPUT) {
+        return_list.emplace_back(current_instruction, cnt);
+        current_instruction = i;
+        cnt = 1;
+      } else {
+        ++cnt;
+      }
+    }
+    return_list.emplace_back(current_instruction, cnt);
+    return return_list;
+  };
 
 private:
 
