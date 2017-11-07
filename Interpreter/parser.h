@@ -10,6 +10,8 @@
 #include <exception>
 #include <sstream>
 
+#include "exceptions.h"
+
 enum Instruction : char {
   INCREMENT = '+',
   DECREMENT = '-',
@@ -19,20 +21,23 @@ enum Instruction : char {
   INPUT = ',',
   START_LOOP = '[',
   END_LOOP = ']',
+  START = '\1',
   END = '\0'
 };
 
-class Parser {
+class parser {
 public:
-  //converts string to program instructions
+
+  //converts string to runner instructions
   std::vector<Instruction> parse_bin(std::string source) {
 
-    std::vector<Instruction> instructions;
-    std::stringstream ss(source);
 
     if (source.empty() || source[0] != '1') {
-      throw std::exception();
+      throw syntax_error("Invalid program: no leading 1");
     }
+
+    std::vector<Instruction> instructions {START};
+    std::stringstream ss(source);
 
     ss.ignore();
 
@@ -68,7 +73,7 @@ private:
 
     std::string cmd;
     while (cmd.size() < 3) {
-      if (ss.eof()) throw std::exception();
+      if (ss.eof()) throw syntax_error("incomplete command");
       char c;
       ss >> c;
       if (c != '0' && c != '1') continue;

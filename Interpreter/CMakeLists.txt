@@ -3,5 +3,5 @@ project(Interpreter)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(SOURCE_FILES main.cpp parser.h)
+set(SOURCE_FILES main.cpp parser.h runner.h exceptions.h)
 add_executable(Binaryfuck ${SOURCE_FILES})
