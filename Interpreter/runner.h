@@ -28,14 +28,14 @@ private:
         unmatched.push(i);
       }
       if (inst == END_LOOP) {
-        if (unmatched.empty()) throw runtime_error("unmatched ]");
+        if (unmatched.empty()) throw runtime_error("unmatched 111");
         int idx = unmatched.top();
         unmatched.pop();
         loop_match[i] = idx;
         loop_match[idx] = i;
       }
     }
-    if (!unmatched.empty()) throw runtime_error("unmatched [");
+    if (!unmatched.empty()) throw runtime_error("unmatched 110");
   }
 
   void init() {
